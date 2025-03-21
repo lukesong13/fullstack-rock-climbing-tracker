@@ -9,6 +9,41 @@ let genderInput = document.getElementById('gender');
 let usernameInput = document.getElementById('username');
 let passwordInput = document.getElementById('password');
 
+
+document.getElementById('fetch-users').addEventListener('click', async () => {
+    try {
+        const response = await fetch('http://localhost:5000/api/users');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const users = await response.json();
+        console.log('Users:', users);
+
+        // Get the user list container
+        const getObjectsList = document.getElementById('get-objects-list');
+        getObjectsList.innerHTML = ''; // Clear previous entries
+
+        // Display users in a list
+        users.forEach(user => {
+            const li = document.createElement('li');
+            li.textContent = `${user.firstName} ${user.lastName} - ${user.email}`;
+            getObjectsList.appendChild(li);
+        });
+
+    } catch (error) {
+        console.error('Error:', error.message);
+        document.getElementById('message').textContent = "Error fetching users.";
+        document.getElementById('message').style.color = "red";
+    }
+});
+
+
+
+/* 
+POST REQS START HERE
+*/
 userCreationForm.addEventListener('submit', async (event) => {
 
     event.preventDefault();

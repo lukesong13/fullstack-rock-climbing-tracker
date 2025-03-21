@@ -25,12 +25,76 @@ document.getElementById('fetch-users').addEventListener('click', async () => {
         const getObjectsList = document.getElementById('get-objects-list');
         getObjectsList.innerHTML = ''; // Clear previous entries
 
-        // Display users in a list
+        // // Display users in a list
+        // users.forEach(user => {
+        //     const li = document.createElement('li');
+        //   	const ul = document.createElement('ul');
+        //   	li.textContent = `${user.id}`;
+        //     // li.textContent = `${user.firstName} ${user.lastName} - ${user.email}`;
+        //   	ul.textContent = '<li>' + ` ${user.firstName}` + '</li> <li>' + `${user.lastName}` + '</li> <li>' + `${user.email}` + '</li>';
+          
+        //   	li.appendChild(ul);
+        //     getObjectsList.appendChild(li);
+          	
+        // });
+
         users.forEach(user => {
             const li = document.createElement('li');
-            li.textContent = `${user.firstName} ${user.lastName} - ${user.email}`;
+            const ul = document.createElement('ul');
+
+            li.textContent = `User ID: ${user.id}`;
+
+
+            const firstNameLi = document.createElement('li');
+            firstNameLi.textContent = `First Name: ${user.firstName}`;
+
+            const lastNameLi = document.createElement('li');
+            lastNameLi.textContent = `Last Name: ${user.lastName}`;
+
+            const emailLi = document.createElement('li');
+            emailLi.textContent = `Email: ${user.email}`;
+
+            // add consts for: gender, username, password, chalk, shoes, createDate, and updateDate
+
+            const genderLi = document.createElement('li');
+            genderLi.textContent = `Gender: ${user.gender}`;
+
+            const usernameLi = document.createElement('li');
+            usernameLi.textContent = `Username: ${user.username}`;
+
+            const chalkLi = document.createElement('li');
+            genderLi.textContent = `Chalk: ${user.chalk}`;
+
+            const shoesLi = document.createElement('li');
+            genderLi.textContent = `Shoes: ${user.shoes}`;
+
+            const createDateLi = document.createElement('li');
+            genderLi.textContent = `Creation Date: ${user.createDate}`;
+
+            const updateDateLi = document.createElement('li');
+            genderLi.textContent = `Update Date: ${user.updateDate}`;
+
+
+
+            ul.appendChild(firstNameLi);
+            ul.appendChild(lastNameLi);
+            ul.appendChild(emailLi);
+            ul.appendChild(genderLi);
+            ul.appendChild(usernameLi);
+            ul.appendChild(chalkLi);
+            ul.appendChild(shoesLi);
+            ul.appendChild(createDateLi);
+            ul.appendChild(updateDateLi);
+
+
+            li.appendChild(ul);
+
+       
             getObjectsList.appendChild(li);
+
+            
         });
+
 
     } catch (error) {
         console.error('Error:', error.message);

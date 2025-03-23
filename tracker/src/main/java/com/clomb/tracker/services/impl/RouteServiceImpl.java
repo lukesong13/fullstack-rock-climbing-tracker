@@ -41,6 +41,7 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public List<RouteDto> getRouteByGymId(int id) {
+        //currently searching for route containing id that is supposed to be gym id
         if (routeRepository.existsById(id)) {
             List<Route> routes = routeRepository.getByGymId(id);
             return routes.stream().map(routeMapper::mapToRouteDto)

@@ -42,14 +42,17 @@ public class RouteController {
     public ResponseEntity<RouteDto> getRouteById(@PathVariable int id) {
         RouteDto routeDto = routeService.getRouteById(id);
                 return ResponseEntity.ok(routeDto);
+    }
 
+    @GetMapping("/gym/{gymId}")
+    public ResponseEntity<List<RouteDto>> getRouteByGymId(@PathVariable int gymId) {
+        return ResponseEntity.ok(routeService.getRouteByGymId(gymId));
     }
 //
     @GetMapping
     public ResponseEntity<List<RouteDto>> getAllRoutes() {
         List<RouteDto> routes = routeService.getAllRoutes();
         return ResponseEntity.ok(routes);
-
     }
 //
     @DeleteMapping("/{id}")

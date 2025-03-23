@@ -40,6 +40,17 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
+    public List<RouteDto> getRouteByGymId(int id) {
+        if (routeRepository.existsById(id)) {
+            List<Route> routes = routeRepository.getByGymId(id);
+            return routes.stream().map(routeMapper::mapToRouteDto)
+                    .collect(Collectors.toList());
+        }
+        return null;
+    }
+
+
+    @Override
     public List<RouteDto> getAllRoutes() {
         List<Route> routes = routeRepository.findAll();
         List<RouteDto> routeDtos = routes.stream().map(routeMapper::mapToRouteDto).collect(Collectors.toList());

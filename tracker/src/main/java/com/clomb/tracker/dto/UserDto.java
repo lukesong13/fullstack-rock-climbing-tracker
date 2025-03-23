@@ -1,6 +1,5 @@
 package com.clomb.tracker.dto;
 
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -19,8 +18,8 @@ public class UserDto {
     private String username;
     private String password;
     private String gender;
-    private Timestamp createDate;
-    private Timestamp updateDate;
+    private Timestamp userCreateDate;
+    private Timestamp userUpdateDate;
 
 }
 

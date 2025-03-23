@@ -25,19 +25,6 @@ document.getElementById('fetch-users').addEventListener('click', async () => {
         const getObjectsList = document.getElementById('get-objects-list');
         getObjectsList.innerHTML = ''; // Clear previous entries
 
-        // // Display users in a list
-        // users.forEach(user => {
-        //     const li = document.createElement('li');
-        //   	const ul = document.createElement('ul');
-        //   	li.textContent = `${user.id}`;
-        //     // li.textContent = `${user.firstName} ${user.lastName} - ${user.email}`;
-        //   	ul.textContent = '<li>' + ` ${user.firstName}` + '</li> <li>' + `${user.lastName}` + '</li> <li>' + `${user.email}` + '</li>';
-          
-        //   	li.appendChild(ul);
-        //     getObjectsList.appendChild(li);
-          	
-        // });
-
         users.forEach(user => {
             const li = document.createElement('li');
             const ul = document.createElement('ul');
@@ -63,16 +50,16 @@ document.getElementById('fetch-users').addEventListener('click', async () => {
             usernameLi.textContent = `Username: ${user.username}`;
 
             const chalkLi = document.createElement('li');
-            genderLi.textContent = `Chalk: ${user.chalk}`;
+            chalkLi.textContent = `Chalk: ${user.chalk}`;
 
             const shoesLi = document.createElement('li');
-            genderLi.textContent = `Shoes: ${user.shoes}`;
+            shoesLi.textContent = `Shoes: ${user.shoes}`;
 
-            const createDateLi = document.createElement('li');
-            genderLi.textContent = `Creation Date: ${user.createDate}`;
+            const userCreateDateLi = document.createElement('li');
+            userCreateDateLi.textContent = `Creation Date: ${user.userCreateDate}`;
 
-            const updateDateLi = document.createElement('li');
-            genderLi.textContent = `Update Date: ${user.updateDate}`;
+            const userUpdateDateLi = document.createElement('li');
+            userUpdateDateLi.textContent = `Update Date: ${user.userUpdateDate}`;
 
 
 
@@ -83,8 +70,8 @@ document.getElementById('fetch-users').addEventListener('click', async () => {
             ul.appendChild(usernameLi);
             ul.appendChild(chalkLi);
             ul.appendChild(shoesLi);
-            ul.appendChild(createDateLi);
-            ul.appendChild(updateDateLi);
+            ul.appendChild(userCreateDateLi);
+            ul.appendChild(userUpdateDateLi);
 
 
             li.appendChild(ul);
@@ -98,8 +85,137 @@ document.getElementById('fetch-users').addEventListener('click', async () => {
 
     } catch (error) {
         console.error('Error:', error.message);
-        document.getElementById('message').textContent = "Error fetching users.";
-        document.getElementById('message').style.color = "red";
+        document.getElementById('get-request-error-message').textContent = "Error fetching users.";
+        document.getElementById('get-request-error-message').style.color = "red";
+    }
+});
+
+
+
+document.getElementById('fetch-gyms').addEventListener('click', async () => {
+    try {
+        const response = await fetch('http://localhost:5000/api/gyms');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const gyms = await response.json();
+        console.log('Gyms:', gyms);
+
+        // Get the gym list container
+        const getObjectsList = document.getElementById('get-objects-list');
+        getObjectsList.innerHTML = ''; // Clear previous entries
+
+        gyms.forEach(gym => {
+            const li = document.createElement('li');
+            const ul = document.createElement('ul');
+
+            li.textContent = `Gym ID: ${gym.id}`;
+
+            const gymNameLi = document.createElement('li');
+            gymNameLi.textContent = `Gym Name: ${gym.gymName}`;
+
+            const gymAddressLi = document.createElement('li');
+            gymAddressLi.textContent = `Gym Address: ${gym.gymAddress}`;
+
+            const gymCreateDateLi = document.createElement('li');
+            gymCreateDateLi.textContent = `Creation Date: ${gym.gymCreateDate}`;
+
+            const gymUpdateDateLi = document.createElement('li');
+            gymUpdateDateLi.textContent = `Update Date: ${gym.gymUpdateDate}`;
+
+
+
+            ul.appendChild(gymNameLi);
+            ul.appendChild(gymAddressLi);
+            ul.appendChild(gymCreateDateLi);
+            ul.appendChild(gymUpdateDateLi);
+
+
+            li.appendChild(ul);
+
+       
+            getObjectsList.appendChild(li);
+
+            
+        });
+
+
+    } catch (error) {
+        console.error('Error:', error.message);
+        document.getElementById('get-request-error-message').textContent = "Error fetching gyms.";
+        document.getElementById('get-request-error-message').style.color = "red";
+    }
+});
+
+
+document.getElementById('fetch-routes').addEventListener('submit', async (event) => {
+    
+    event.preventDefault();
+    try {
+        let gymId = document.getElementById('get-route-gym-id').value;
+
+        const response = await fetch('http://localhost:5000/api/routes/gym/'+gymId);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const routes = await response.json();
+        console.log('Routes:', routes);
+
+        // Get the route list container
+        const getObjectsList = document.getElementById('get-objects-list');
+        getObjectsList.innerHTML = ''; // Clear previous entries
+
+        routes.forEach(route => {
+            const li = document.createElement('li');
+            const ul = document.createElement('ul');
+
+            li.textContent = `Route ID: ${route.id}`;
+
+            const routeGradeLi = document.createElement('li');
+            routeGradeLi.textContent = `Route Grade: ${route.grade}`;
+
+            const routeSetterLi = document.createElement('li');
+            routeSetterLi.textContent = `Route Setter: ${route.setter}`;
+
+            const routeColorLi = document.createElement('li');
+            routeColorLi.textContent = `Route Color: ${route.color}`;
+
+            const gymIdLi = document.createElement('li');
+            gymIdLi.textContent = `Gym ID: ${route.gymId}`;
+
+            const routeCreateDateLi = document.createElement('li');
+            routeCreateDateLi.textContent = `Creation Date: ${route.routeCreateDate}`;
+
+            const routeUpdateDateLi = document.createElement('li');
+            routeUpdateDateLi.textContent = `Update Date: ${route.routeUpdateDate}`;
+
+
+
+            ul.appendChild(routeGradeLi);
+            ul.appendChild(routeSetterLi);
+            ul.appendChild(routeColorLi);
+            ul.appendChild(gymIdLi);
+            ul.appendChild(routeCreateDateLi);
+            ul.appendChild(routeUpdateDateLi);
+
+
+            li.appendChild(ul);
+
+       
+            getObjectsList.appendChild(li);
+
+            
+        });
+
+
+    } catch (error) {
+        console.error('Error:', error.message);
+        document.getElementById('get-request-error-message').textContent = "Error fetching routes.";
+        document.getElementById('get-request-error-message').style.color = "red";
     }
 });
 
@@ -112,8 +228,6 @@ userCreationForm.addEventListener('submit', async (event) => {
 
     event.preventDefault();
   
-  	output.innerHTML = "";
-
     let newUser = {};
     newUser.firstName = firstNameInput.value;
     newUser.lastName = lastNameInput.value;
@@ -142,15 +256,15 @@ userCreationForm.addEventListener('submit', async (event) => {
       const result = await response.json();
       console.log('Response:', result);
 
-      document.getElementById('message').textContent = "User successfully registered!";
-      document.getElementById('message').style.color = "green";
+      document.getElementById('user-message').textContent = "User successfully registered!";
+      document.getElementById('user-message').style.color = "green";
 
       // Optional: Clear form fields after successful submission
       event.target.reset();
   } catch (error) {
       console.error('Error:', error.message);
-      document.getElementById('message').textContent = "Error submitting form. Try again.";
-      document.getElementById('message').style.color = "red";
+      document.getElementById('user-message').textContent = "Error submitting form. Try again.";
+      document.getElementById('user-message').style.color = "red";
   }
 
     // output.innerHTML += '<li>'+newUser.firstName+'</li>';

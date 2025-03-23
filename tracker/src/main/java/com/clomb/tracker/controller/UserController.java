@@ -25,8 +25,8 @@ public class UserController {
         Instant instant = Instant.now();
         long timestampEpochMilliseconds = instant.toEpochMilli();
 
-        userDto.setCreateDate(new Timestamp(timestampEpochMilliseconds));
-        userDto.setUpdateDate(new Timestamp(timestampEpochMilliseconds));
+        userDto.setUserCreateDate(new Timestamp(timestampEpochMilliseconds));
+        userDto.setUserUpdateDate(new Timestamp(timestampEpochMilliseconds));
         return new ResponseEntity<>(userService.createUser(userDto), HttpStatus.CREATED);
     }
     /*

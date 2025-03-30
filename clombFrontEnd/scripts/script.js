@@ -246,10 +246,10 @@ document.getElementById('fetch-climb-details').addEventListener('submit', async 
             notesLi.textContent = `Notes: ${climbDetail.notes}`;
 
             const climbDetailCreateDateLi = document.createElement('li');
-            climbDetailCreateDateLi.textContent = `Creation Date: ${climbDetail.climbDetailCreateDate}`;
+            climbDetailCreateDateLi.textContent = `Creation Date: ${climbDetail.climbDetailsCreateDate}`;
 
             const climbDetailUpdateDateLi = document.createElement('li');
-            climbDetailUpdateDateLi.textContent = `Update Date: ${climbDetail.climbDetailUpdateDate}`;
+            climbDetailUpdateDateLi.textContent = `Update Date: ${climbDetail.climbDetailsUpdateDate}`;
 
 
 
@@ -568,5 +568,153 @@ userUpdateForm.addEventListener('submit', async (event) => {
   }
 
 });
+
+const gymUpdateForm = document.getElementById('gym-update-form');
+
+gymUpdateForm.addEventListener('submit', async (event) => {
+
+    event.preventDefault();
+
+    let gymIdInput = document.getElementById('update-gym-id');
+    let gymNameInput = document.getElementById('update-gym-name');
+    let gymAddressInput = document.getElementById('update-gym-address');
+  
+  	// output.innerHTML = "";
+
+    let updatedGym = {};
+    updatedGym.gymName = gymNameInput.value;
+    updatedGym.gymAddress = gymAddressInput.value;
+
+    console.log(updatedGym);
+
+    try {
+      const response = await fetch('http://localhost:5000/api/gyms/'+gymIdInput.value, {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatedGym)
+      });
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('Response:', result);
+
+      document.getElementById('update-message').textContent = "Gym successfully updated!";
+      document.getElementById('update-message').style.color = "green";
+
+      // Optional: Clear form fields after successful submission
+      event.target.reset();
+  } catch (error) {
+      console.error('Error:', error.message);
+      document.getElementById('update-message').textContent = "Error submitting form. Try again.";
+      document.getElementById('update-message').style.color = "red";
+  }
+
+
+  });
+
+  const routeUpdateForm = document.getElementById('route-update-form')
+
+    routeUpdateForm.addEventListener('submit', async (event) => {
+
+      event.preventDefault();
+
+      let routeIdInput = document.getElementById('update-route-id');
+      let routeGradeInput = document.getElementById('update-route-grade');
+      let routeColorInput= document.getElementById('update-route-color');
+      let routeSetterInput = document.getElementById('update-route-setter');
+    
+      // output.innerHTML = "";
+  
+      let updatedRoute = {};
+      updatedRoute.grade = routeGradeInput.value;
+      updatedRoute.setter = routeSetterInput.value;
+      updatedRoute.color = routeColorInput.value;
+      updatedRoute.gymId = gymIdInput.value;
+  
+      console.log(updatedRoute);
+  
+      try {
+        const response = await fetch('http://localhost:5000/api/routes/'+routeIdInput.value, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedRoute)
+        });
+  
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+  
+        const result = await response.json();
+        console.log('Response:', result);
+  
+        document.getElementById('update-message').textContent = "Route successfully updated!";
+        document.getElementById('update-message').style.color = "green";
+  
+        // Optional: Clear form fields after successful submission
+        event.target.reset();
+    } catch (error) {
+        console.error('Error:', error.message);
+        document.getElementById('update-message').textContent = "Error submitting form. Try again.";
+        document.getElementById('update-message').style.color = "red";
+    }
+});
+
+const climbDetailsUpdateForm = document.getElementById('climbDetails-update-form');
+
+climbDetailsUpdateForm.addEventListener('submit', async (event) => {
+
+  event.preventDefault();
+
+  let climbDetailsIdInput = document.getElementById('update-climbDetails-id');
+  let climbDetailsUserIdInput = document.getElementById('update-climbDetails-userId');
+  let climbDetailsRouteIdInput = document.getElementById('update-climbDetails-routeId');
+  let climbDetailsGymIdInput = document.getElementById('update-climbDetails-gymId');
+  let climbDetailsNotesInput = document.getElementById('update-climbDetails-notes');
+
+  // output.innerHTML = "";
+
+  let updatedClimbDetails = {};
+ updatedClimbDetails.climbDetailsId = climbDetailsIdInput.value;
+  updatedClimbDetails.routeId = climbDetailsRouteIdInput.value;
+  updatedClimbDetails.gymId = climbDetailsGymIdInput.value;
+  updatedClimbDetails.notes = climbDetailsNotesInput.value;
+
+  console.log(updatedClimbDetails);
+
+  try {
+    const response = await fetch('http://localhost:5000/api/climbDetails/'+climbDetailsIdInput.value, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedClimbDetails)
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log('Response:', result);
+
+    document.getElementById('update-message').textContent = "Climb Details successfully updated!";
+    document.getElementById('update-message').style.color = "green";
+
+    // Optional: Clear form fields after successful submission
+    event.target.reset();
+} catch (error) {
+    console.error('Error:', error.message);
+    document.getElementById('update-message').textContent = "Error submitting form. Try again.";
+    document.getElementById('update-message').style.color = "red";
+}
+});
+
 
 

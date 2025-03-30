@@ -1,15 +1,3 @@
-const userCreationForm = document.getElementById('user-creation-form');
-
-let firstNameInput = document.getElementById('first-name');
-let lastNameInput = document.getElementById('last-name');
-let emailInput = document.getElementById('email');
-let shoesInput = document.getElementById('shoes');
-let chalkInput = document.getElementById('chalk');
-let genderInput = document.getElementById('gender');
-let usernameInput = document.getElementById('username');
-let passwordInput = document.getElementById('password');
-
-
 document.getElementById('fetch-users').addEventListener('click', async () => {
     try {
         const response = await fetch('http://localhost:5000/api/users');
@@ -220,13 +208,94 @@ document.getElementById('fetch-routes').addEventListener('submit', async (event)
 });
 
 
+document.getElementById('fetch-climb-details').addEventListener('submit', async (event) => {
+    
+    event.preventDefault();
+    try {
+        let userId = document.getElementById('get-climb-details-user-id').value;
+
+        const response = await fetch('http://localhost:5000/api/climbDetails/user/'+userId);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const climbDetails = await response.json();
+        console.log('Climb Details:', climbDetails);
+
+        // Get the climb details list container
+        const getObjectsList = document.getElementById('get-objects-list');
+        getObjectsList.innerHTML = ''; // Clear previous entries
+
+        climbDetails.forEach(climbDetail => {
+            const li = document.createElement('li');
+            const ul = document.createElement('ul');
+
+            li.textContent = `Climb Detail ID: ${climbDetail.id}`;
+
+            const userIdLi = document.createElement('li');
+            userIdLi.textContent = `User ID: ${climbDetail.userId}`;
+
+            const routeIdLi = document.createElement('li');
+            routeIdLi.textContent = `Route ID: ${climbDetail.routeId}`;
+
+            const gymIdLi = document.createElement('li');
+            gymIdLi.textContent = `Gym ID: ${climbDetail.gymId}`;
+
+            const notesLi = document.createElement('li');
+            notesLi.textContent = `Notes: ${climbDetail.notes}`;
+
+            const climbDetailCreateDateLi = document.createElement('li');
+            climbDetailCreateDateLi.textContent = `Creation Date: ${climbDetail.climbDetailCreateDate}`;
+
+            const climbDetailUpdateDateLi = document.createElement('li');
+            climbDetailUpdateDateLi.textContent = `Update Date: ${climbDetail.climbDetailUpdateDate}`;
+
+
+
+            ul.appendChild(userIdLi);
+            ul.appendChild(routeIdLi);
+            ul.appendChild(gymIdLi);
+            ul.appendChild(notesLi);
+            ul.appendChild(climbDetailCreateDateLi);
+            ul.appendChild(climbDetailUpdateDateLi);
+
+
+            li.appendChild(ul);
+
+       
+            getObjectsList.appendChild(li);
+
+            
+        });
+
+
+    } catch (error) {
+        console.error('Error:', error.message);
+        document.getElementById('get-request-error-message').textContent = "Error fetching climb details.";
+        document.getElementById('get-request-error-message').style.color = "red";
+    }
+});
+
 
 /* 
 POST REQS START HERE
 */
+
+const userCreationForm = document.getElementById('user-creation-form');
+
 userCreationForm.addEventListener('submit', async (event) => {
 
     event.preventDefault();
+
+    let firstNameInput = document.getElementById('first-name');
+    let lastNameInput = document.getElementById('last-name');
+    let emailInput = document.getElementById('email');
+    let shoesInput = document.getElementById('shoes');
+    let chalkInput = document.getElementById('chalk');
+    let genderInput = document.getElementById('gender');
+    let usernameInput = document.getElementById('username');
+    let passwordInput = document.getElementById('password');
   
     let newUser = {};
     newUser.firstName = firstNameInput.value;
@@ -435,6 +504,69 @@ climbDetailsCreationForm.addEventListener('submit', async (event) => {
     document.getElementById('climbDetails-message').textContent = "Error submitting form. Try again.";
     document.getElementById('climbDetails-message').style.color = "red";
 }
+});
+
+
+
+/* 
+PUT REQS START HERE
+*/
+
+let userUpdateForm = document.getElementById('user-update-form');
+
+userUpdateForm.addEventListener('submit', async (event) => {
+
+    event.preventDefault();
+
+    let userIdInput = document.getElementById('update-user-id');
+    let firstNameInput = document.getElementById('update-first-name');
+    let lastNameInput = document.getElementById('update-last-name');
+    let emailInput = document.getElementById('update-email');
+    let shoesInput = document.getElementById('update-shoes');
+    let chalkInput = document.getElementById('update-chalk');
+    let genderInput = document.getElementById('update-gender');
+    let usernameInput = document.getElementById('update-username');
+    let passwordInput = document.getElementById('update-password');
+  
+    let updatedUser = {};
+    updatedUser.firstName = firstNameInput.value;
+    updatedUser.lastName = lastNameInput.value;
+    updatedUser.email = emailInput.value;
+    updatedUser.shoes = shoesInput.value;
+    updatedUser.chalk = chalkInput.value;
+    updatedUser.gender = genderInput.value;
+    updatedUser.username = usernameInput.value;
+    updatedUser.password = passwordInput.value;
+
+    console.log(updatedUser);
+
+    try {
+      const response = await fetch('http://localhost:5000/api/users/'+userIdInput.value, {
+          method: 'PUT',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatedUser)
+      });
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('Response:', result);
+
+      document.getElementById('update-message').textContent = "User successfully updated!";
+      document.getElementById('update-message').style.color = "green";
+
+      // Optional: Clear form fields after successful submission
+      event.target.reset();
+  } catch (error) {
+      console.error('Error:', error.message);
+      document.getElementById('update-message').textContent = "Error submitting form. Try again.";
+      document.getElementById('update-message').style.color = "red";
+  }
+
 });
 
 

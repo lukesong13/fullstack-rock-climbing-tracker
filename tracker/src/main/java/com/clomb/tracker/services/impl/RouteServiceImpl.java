@@ -4,7 +4,9 @@ import com.clomb.tracker.dto.GymDto;
 import com.clomb.tracker.dto.RouteDto;
 import com.clomb.tracker.entities.Gym;
 import com.clomb.tracker.entities.Route;
+import com.clomb.tracker.mapper.GymMapper;
 import com.clomb.tracker.mapper.RouteMapper;
+import com.clomb.tracker.repositories.GymRepository;
 import com.clomb.tracker.repositories.RouteRepository;
 import com.clomb.tracker.services.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,11 @@ public class RouteServiceImpl implements RouteService {
     @Autowired
     private RouteMapper routeMapper;
 
+    @Autowired
+    private GymMapper gymMapper;
+
+    @Autowired
+    private GymRepository gymRepository;
 
     @Override
     public RouteDto createRoute(RouteDto routeDto) {
@@ -42,7 +49,7 @@ public class RouteServiceImpl implements RouteService {
     @Override
     public List<RouteDto> getRouteByGymId(int id) {
         //currently searching for route containing id that is supposed to be gym id
-        if (routeRepository.existsById(id)) {
+        if (gymRepository.existsById(id)) {
             List<Route> routes = routeRepository.getByGymId(id);
             return routes.stream().map(routeMapper::mapToRouteDto)
                     .collect(Collectors.toList());

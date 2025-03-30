@@ -1,6 +1,7 @@
 package com.clomb.tracker.controller;
 
 import com.clomb.tracker.dto.ClimbDetailsDto;
+import com.clomb.tracker.dto.RouteDto;
 import com.clomb.tracker.services.ClimbDetailsService;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
@@ -43,6 +44,11 @@ public class ClimbDetailsController {
         List<ClimbDetailsDto> climbDetails = climbDetailsService.getAllClimbDetails();
         return ResponseEntity.ok(climbDetails);
 
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<ClimbDetailsDto>> getClimbDetailsByUserId(@PathVariable int userId) {
+        return ResponseEntity.ok(climbDetailsService.getClimbDetailsByUserId(userId));
     }
 
     @DeleteMapping("/{id}")

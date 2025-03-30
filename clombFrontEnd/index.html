@@ -8,6 +8,7 @@
 
 <body>
 
+    
     <h1>Get Data</h1>
 
     <button id="fetch-users">Get All Users</button>
@@ -15,6 +16,10 @@
     <form id="fetch-routes">
         <input type="text" placeholder="Gym ID" id="get-route-gym-id">
         <button type="submit">Get Routes</button>
+    </form>
+    <form id="fetch-climb-details">
+        <input type="text" placeholder="User ID" id="get-climb-details-user-id">
+        <button type="submit">Get Climb Details</button>
     </form>
 
     
@@ -24,7 +29,7 @@
 
     
 
-    <h1>User Creation</h1>
+    <h1>Data Creation</h1>
 
     <form id="user-creation-form">
         <input type="text" placeholder="First Name" id="first-name">
@@ -79,8 +84,25 @@
 
     <p id="climbDetails-message"></p> <!-- Climb Details feedback message -->
 
+    <h1>Data Update</h1>
+
+    <form id="user-update-form">
+        <input type="text" placeholder="User ID" id="update-user-id">
+        <input type="text" placeholder="First Name" id="update-first-name">
+        <input type="text" placeholder="Last Name" id="update-last-name">
+        <input type="text" placeholder="Email" id="update-email">
+        <input type="text" placeholder="Shoes" id="update-shoes">
+        <input type="text" placeholder="Chalk" id="update-chalk">
+        <input type="text" placeholder="Gender" id="update-gender">
+        <input type="text" placeholder="Username" id="update-username">
+        <input type="text" placeholder="Password" id="update-password">
+        <button type="submit">Update User</button>
+    </form>
+
+    <p id="update-message"></p> <!-- User feedback message -->
+
     <script type="text/javascript" src="../scripts/script.js"></script>
 
-    
+
 </body>
 </html>

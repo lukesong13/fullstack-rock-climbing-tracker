@@ -716,5 +716,139 @@ climbDetailsUpdateForm.addEventListener('submit', async (event) => {
 }
 });
 
+/* 
+DELETE REQS START HERE
+*/
 
+const userDeleteForm = document.getElementById('user-delete-form');
+
+userDeleteForm.addEventListener('submit', async (event) => {
+
+  event.preventDefault();
+
+  let userIdInput = document.getElementById('delete-user-id');
+
+
+  try {
+    const response = await fetch('http://localhost:5000/api/users/'+userIdInput.value, {
+        method: 'DELETE'
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.text();
+    console.log('Response:', result);
+
+    document.getElementById('delete-message').textContent = "User successfully deleted!";
+    document.getElementById('delete-message').style.color = "green";
+
+    // Optional: Clear form fields after successful submission
+    event.target.reset();
+} catch (error) {
+    console.error('Error:', error.message);
+    document.getElementById('delete-message').textContent = "Error submitting form. Try again.";
+    document.getElementById('delete-message').style.color = "red";
+}
+});
+
+const routeDeleteForm = document.getElementById('route-delete-form');
+
+routeDeleteForm.addEventListener('submit', async (event) => {
+
+  event.preventDefault();
+
+  let routeIdInput = document.getElementById('delete-route-id');
+
+
+  try {
+    const response = await fetch('http://localhost:5000/api/routes/'+routeIdInput.value, {
+        method: 'DELETE'
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.text();
+    console.log('Response:', result);
+
+    document.getElementById('delete-message').textContent = "Route successfully deleted!";
+    document.getElementById('delete-message').style.color = "green";
+
+    // Optional: Clear form fields after successful submission
+    event.target.reset();
+} catch (error) {
+    console.error('Error:', error.message);
+    document.getElementById('delete-message').textContent = "Error submitting form. Try again.";
+    document.getElementById('delete-message').style.color = "red";
+}
+});
+
+const gymDeleteForm = document.getElementById('gym-delete-form');
+
+gymDeleteForm.addEventListener('submit', async (event) => {
+
+  event.preventDefault();
+
+  let gymIdInput = document.getElementById('delete-gym-id');
+
+
+  try {
+    const response = await fetch('http://localhost:5000/api/gyms/'+gymIdInput.value, {
+        method: 'DELETE'
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.text();
+    console.log('Response:', result);
+
+    document.getElementById('delete-message').textContent = "Gym successfully deleted!";
+    document.getElementById('delete-message').style.color = "green";
+
+    // Optional: Clear form fields after successful submission
+    event.target.reset();
+} catch (error) {
+    console.error('Error:', error.message);
+    document.getElementById('delete-message').textContent = "Error submitting form. Try again.";
+    document.getElementById('delete-message').style.color = "red";
+}
+});
+
+const climbDetailsDeleteForm = document.getElementById('climb-details-delete-form');
+
+climbDetailsDeleteForm.addEventListener('submit', async (event) => {
+
+  event.preventDefault();
+
+  let climbDetailsIdInput = document.getElementById('delete-climb-detail-id');
+
+
+  try {
+    const response = await fetch('http://localhost:5000/api/climbDetails/'+climbDetailsIdInput.value, {
+        method: 'DELETE'
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.text();
+    console.log('Response:', result);
+
+    document.getElementById('delete-message').textContent = "Climb Details successfully deleted!";
+    document.getElementById('delete-message').style.color = "green";
+
+    // Optional: Clear form fields after successful submission
+    event.target.reset();
+} catch (error) {
+    console.error('Error:', error.message);
+    document.getElementById('delete-message').textContent = "Error submitting form. Try again.";
+    document.getElementById('delete-message').style.color = "red";
+}
+});
 

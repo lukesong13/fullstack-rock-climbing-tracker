@@ -23,6 +23,8 @@ public class ClimbDetailsController {
     public ClimbDetailsController(ClimbDetailsService climbDetailsService) {
         this.climbDetailsService = climbDetailsService;
     }
+
+    //TODO: update method to be called addClimbDetail
     @PostMapping
     public ResponseEntity<ClimbDetailsDto> addUser(@RequestBody ClimbDetailsDto climbDetailsDto){
         Instant instant = Instant.now();

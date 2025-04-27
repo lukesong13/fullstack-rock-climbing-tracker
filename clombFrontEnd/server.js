@@ -38,6 +38,11 @@ app.get('/routes', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/routes.html'));
 });
 
+// Route for /climbdetails
+app.get('/climbdetails', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/climbdetails.html'));
+});
+
 app.listen(port, () => {
     console.log(`Server started. Available at http://localhost:${port}`);
 });

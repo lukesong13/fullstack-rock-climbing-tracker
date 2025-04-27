@@ -24,9 +24,8 @@ public class ClimbDetailsController {
         this.climbDetailsService = climbDetailsService;
     }
 
-    //TODO: update method to be called addClimbDetail
     @PostMapping
-    public ResponseEntity<ClimbDetailsDto> addUser(@RequestBody ClimbDetailsDto climbDetailsDto){
+    public ResponseEntity<ClimbDetailsDto> addClimbDetail(@RequestBody ClimbDetailsDto climbDetailsDto){
         Instant instant = Instant.now();
         long timestampEpochMilliseconds = instant.toEpochMilli();
 

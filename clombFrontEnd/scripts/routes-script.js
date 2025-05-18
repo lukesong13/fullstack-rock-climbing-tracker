@@ -6,7 +6,7 @@ document.getElementById('fetch-routes').addEventListener('submit', async (event)
     try {
         let gymId = document.getElementById('get-route-gym-id').value;
 
-        const response = await fetch('http://localhost:5000/api/routes/gym/'+gymId);
+        const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/routes/gym/'+gymId);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -93,7 +93,7 @@ const routeCreationForm = document.getElementById('route-creation-form');
       console.log(newRoute);
   
       try {
-        const response = await fetch('http://localhost:5000/api/routes', {
+        const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/routes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -144,7 +144,7 @@ const routeUpdateForm = document.getElementById('route-update-form')
       console.log(updatedRoute);
   
       try {
-        const response = await fetch('http://localhost:5000/api/routes/'+routeIdInput.value, {
+        const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/routes/'+routeIdInput.value, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -183,7 +183,7 @@ routeDeleteForm.addEventListener('submit', async (event) => {
 
 
   try {
-    const response = await fetch('http://localhost:5000/api/routes/'+routeIdInput.value, {
+    const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/routes/'+routeIdInput.value, {
         method: 'DELETE'
     });
 

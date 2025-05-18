@@ -1,6 +1,6 @@
 document.getElementById('fetch-users').addEventListener('click', async () => {
     try {
-        const response = await fetch('http://localhost:5000/api/users');
+        const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/users');
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -82,7 +82,7 @@ document.getElementById('fetch-users').addEventListener('click', async () => {
 
 document.getElementById('fetch-gyms').addEventListener('click', async () => {
     try {
-        const response = await fetch('http://localhost:5000/api/gyms');
+        const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/gyms');
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -144,7 +144,7 @@ document.getElementById('fetch-routes').addEventListener('submit', async (event)
     try {
         let gymId = document.getElementById('get-route-gym-id').value;
 
-        const response = await fetch('http://localhost:5000/api/routes/gym/'+gymId);
+        const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/routes/gym/'+gymId);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -214,7 +214,7 @@ document.getElementById('fetch-climb-details').addEventListener('submit', async 
     try {
         let userId = document.getElementById('get-climb-details-user-id').value;
 
-        const response = await fetch('http://localhost:5000/api/climbDetails/user/'+userId);
+        const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/climbDetails/user/'+userId);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -310,7 +310,7 @@ userCreationForm.addEventListener('submit', async (event) => {
     console.log(newUser);
 
     try {
-      const response = await fetch('http://localhost:5000/api/users', {
+      const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/users', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -367,7 +367,7 @@ gymCreationForm.addEventListener('submit', async (event) => {
     console.log(newGym);
 
     try {
-      const response = await fetch('http://localhost:5000/api/gyms', {
+      const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/gyms', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -427,7 +427,7 @@ gymCreationForm.addEventListener('submit', async (event) => {
       console.log(newRoute);
   
       try {
-        const response = await fetch('http://localhost:5000/api/routes', {
+        const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/routes', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -479,7 +479,7 @@ climbDetailsCreationForm.addEventListener('submit', async (event) => {
   console.log(newClimbDetails);
 
   try {
-    const response = await fetch('http://localhost:5000/api/climbDetails', {
+    const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/climbDetails', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -541,7 +541,7 @@ userUpdateForm.addEventListener('submit', async (event) => {
     console.log(updatedUser);
 
     try {
-      const response = await fetch('http://localhost:5000/api/users/'+userIdInput.value, {
+      const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/users/'+userIdInput.value, {
           method: 'PUT',
           headers: {
               'Content-Type': 'application/json'
@@ -588,7 +588,7 @@ gymUpdateForm.addEventListener('submit', async (event) => {
     console.log(updatedGym);
 
     try {
-      const response = await fetch('http://localhost:5000/api/gyms/'+gymIdInput.value, {
+      const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/gyms/'+gymIdInput.value, {
           method: 'PUT',
           headers: {
               'Content-Type': 'application/json'
@@ -639,7 +639,7 @@ gymUpdateForm.addEventListener('submit', async (event) => {
       console.log(updatedRoute);
   
       try {
-        const response = await fetch('http://localhost:5000/api/routes/'+routeIdInput.value, {
+        const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/routes/'+routeIdInput.value, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -689,7 +689,7 @@ climbDetailsUpdateForm.addEventListener('submit', async (event) => {
   console.log(updatedClimbDetails);
 
   try {
-    const response = await fetch('http://localhost:5000/api/climbDetails/'+climbDetailsIdInput.value, {
+    const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/climbDetails/'+climbDetailsIdInput.value, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -730,7 +730,7 @@ userDeleteForm.addEventListener('submit', async (event) => {
 
 
   try {
-    const response = await fetch('http://localhost:5000/api/users/'+userIdInput.value, {
+    const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/users/'+userIdInput.value, {
         method: 'DELETE'
     });
 
@@ -763,7 +763,7 @@ routeDeleteForm.addEventListener('submit', async (event) => {
 
 
   try {
-    const response = await fetch('http://localhost:5000/api/routes/'+routeIdInput.value, {
+    const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/routes/'+routeIdInput.value, {
         method: 'DELETE'
     });
 
@@ -796,7 +796,7 @@ gymDeleteForm.addEventListener('submit', async (event) => {
 
 
   try {
-    const response = await fetch('http://localhost:5000/api/gyms/'+gymIdInput.value, {
+    const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/gyms/'+gymIdInput.value, {
         method: 'DELETE'
     });
 
@@ -829,7 +829,7 @@ climbDetailsDeleteForm.addEventListener('submit', async (event) => {
 
 
   try {
-    const response = await fetch('http://localhost:5000/api/climbDetails/'+climbDetailsIdInput.value, {
+    const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/climbDetails/'+climbDetailsIdInput.value, {
         method: 'DELETE'
     });
 

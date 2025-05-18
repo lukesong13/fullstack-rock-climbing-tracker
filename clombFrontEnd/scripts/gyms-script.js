@@ -2,7 +2,7 @@
 
 document.getElementById('fetch-gyms').addEventListener('click', async () => {
     try {
-        const response = await fetch('http://localhost:5000/api/gyms');
+        const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/gyms');
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -78,7 +78,7 @@ gymCreationForm.addEventListener('submit', async (event) => {
     console.log(newGym);
 
     try {
-      const response = await fetch('http://localhost:5000/api/gyms', {
+      const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/gyms', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -125,7 +125,7 @@ gymUpdateForm.addEventListener('submit', async (event) => {
     console.log(updatedGym);
 
     try {
-      const response = await fetch('http://localhost:5000/api/gyms/'+gymIdInput.value, {
+      const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/gyms/'+gymIdInput.value, {
           method: 'PUT',
           headers: {
               'Content-Type': 'application/json'
@@ -156,7 +156,7 @@ gymUpdateForm.addEventListener('submit', async (event) => {
   //DELETE
 
   const gymDeleteForm = document.getElementById('gym-delete-form');
-  
+
   gymDeleteForm.addEventListener('submit', async (event) => {
 
     event.preventDefault();
@@ -165,7 +165,7 @@ gymUpdateForm.addEventListener('submit', async (event) => {
   
   
     try {
-      const response = await fetch('http://localhost:5000/api/gyms/'+gymIdInput.value, {
+      const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/gyms/'+gymIdInput.value, {
           method: 'DELETE'
       });
   

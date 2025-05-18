@@ -2,7 +2,7 @@
 
 document.getElementById('fetch-users').addEventListener('click', async () => {
     try {
-        const response = await fetch('http://localhost:5000/api/users');
+        const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/users');
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -110,7 +110,7 @@ userCreationForm.addEventListener('submit', async (event) => {
     console.log(newUser);
 
     try {
-      const response = await fetch('http://localhost:5000/api/users', {
+      const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/users', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -169,7 +169,7 @@ userUpdateForm.addEventListener('submit', async (event) => {
     console.log(updatedUser);
 
     try {
-      const response = await fetch('http://localhost:5000/api/users/'+userIdInput.value, {
+      const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/users/'+userIdInput.value, {
           method: 'PUT',
           headers: {
               'Content-Type': 'application/json'
@@ -209,7 +209,7 @@ userDeleteForm.addEventListener('submit', async (event) => {
 
 
   try {
-    const response = await fetch('http://localhost:5000/api/users/'+userIdInput.value, {
+    const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/users/'+userIdInput.value, {
         method: 'DELETE'
     });
 

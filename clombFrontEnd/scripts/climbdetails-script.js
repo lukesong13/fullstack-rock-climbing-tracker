@@ -6,7 +6,7 @@ document.getElementById('fetch-climb-details').addEventListener('submit', async 
     try {
         let userId = document.getElementById('get-climb-details-user-id').value;
 
-        const response = await fetch('http://localhost:5000/api/climbDetails/user/'+userId);
+        const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/climbDetails/user/'+userId);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -95,7 +95,7 @@ climbDetailsCreationForm.addEventListener('submit', async (event) => {
   console.log(newClimbDetails);
 
   try {
-    const response = await fetch('http://localhost:5000/api/climbDetails', {
+    const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/climbDetails', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -147,7 +147,7 @@ climbDetailsUpdateForm.addEventListener('submit', async (event) => {
   console.log(updatedClimbDetails);
 
   try {
-    const response = await fetch('http://localhost:5000/api/climbDetails/'+climbDetailsIdInput.value, {
+    const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/climbDetails/'+climbDetailsIdInput.value, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -186,7 +186,7 @@ climbDetailsDeleteForm.addEventListener('submit', async (event) => {
 
 
   try {
-    const response = await fetch('http://localhost:5000/api/climbDetails/'+climbDetailsIdInput.value, {
+    const response = await fetch('http://clombv4-env.eba-k6padzhd.us-west-2.elasticbeanstalk.com/api/climbDetails/'+climbDetailsIdInput.value, {
         method: 'DELETE'
     });
 
